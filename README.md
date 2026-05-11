@@ -49,4 +49,4 @@ Finally, something that gets you.
 
 ---
 
-*Fluir — from the Spanish and Portuguese verb meaning "to flow."*
+*Fluir — finally, something that gets you.*
