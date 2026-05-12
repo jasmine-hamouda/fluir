@@ -226,9 +226,15 @@ textarea {
 /* ============ ONBOARDING ============ */
 #screen-onboarding {
   position: relative;
-  overflow: hidden;
-  justify-content: center;
+  overflow-y: auto;
+  overflow-x: hidden;
+  justify-content: flex-start;
   padding: 40px 24px;
+  scrollbar-width: none;
+}
+
+#screen-onboarding::-webkit-scrollbar {
+  display: none;
 }
 
 .blob {
@@ -1137,6 +1143,23 @@ textarea {
     height: 100vh;
     border-radius: 0;
     box-shadow: none;
+  }
+
+  .wordmark-img {
+    width: 140px;
+  }
+
+  .onboarding-subtitle {
+    margin-bottom: 16px;
+  }
+
+  .onboarding-form {
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+
+  .form-card {
+    padding: 16px;
   }
 }
 
