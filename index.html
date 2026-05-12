@@ -108,7 +108,7 @@
 
           <div class="progress-section">
             <p class="section-label">today's progress</p>
-            <div class="progress-ring-wrapper">
+            <div class="progress-ring-wrapper" onclick="navigateTo('screen-reflection')" role="button" aria-label="see your weekly reflection" style="cursor:pointer;">
               <svg class="progress-ring" viewBox="0 0 80 80">
                 <circle class="ring-bg" cx="40" cy="40" r="32" />
                 <circle class="ring-fill" cx="40" cy="40" r="32" stroke-dasharray="201" stroke-dashoffset="150" />
@@ -118,6 +118,9 @@
                 <span class="progress-of">of 4</span>
               </div>
             </div>
+            <button class="see-week-btn" onclick="navigateTo('screen-reflection')">
+              see your week →
+            </button>
           </div>
 
           <div class="nudge-card">
@@ -544,6 +547,93 @@
             <span>community</span>
           </button>
         </nav>
+      </div>
+
+      <!-- ============ SCREEN 7: REFLECTION ============ -->
+      <div class="screen" id="screen-reflection">
+        <div class="screen-scroll">
+
+          <div class="reflection-header">
+            <button class="back-btn" onclick="navigateTo('screen-dashboard')" aria-label="back to dashboard">
+              <img src="icons/arrow-counter-clockwise.svg" alt="" /> back
+            </button>
+          </div>
+
+          <div class="reflection-hero">
+            <p class="reflection-week">week of 7 may</p>
+            <h1 class="reflection-title">look how far you've come.</h1>
+          </div>
+
+          <div class="reflection-stats">
+            <div class="stat-card">
+              <span class="stat-number">12</span>
+              <span class="stat-label">tasks completed</span>
+            </div>
+            <div class="stat-card">
+              <span class="stat-number">5</span>
+              <span class="stat-label">days checked in</span>
+            </div>
+            <div class="stat-card">
+              <span class="stat-number">3</span>
+              <span class="stat-label">articles read</span>
+            </div>
+          </div>
+
+          <div class="mood-trend">
+            <p class="section-label">your mood this week</p>
+            <div class="mood-chart">
+              <div class="mood-bar-wrap">
+                <div class="mood-bar" style="height: 40px; background: var(--blush);"></div>
+                <span class="mood-day">M</span>
+              </div>
+              <div class="mood-bar-wrap">
+                <div class="mood-bar" style="height: 60px; background: var(--terracotta);"></div>
+                <span class="mood-day">T</span>
+              </div>
+              <div class="mood-bar-wrap">
+                <div class="mood-bar" style="height: 50px; background: var(--terracotta);"></div>
+                <span class="mood-day">W</span>
+              </div>
+              <div class="mood-bar-wrap">
+                <div class="mood-bar" style="height: 30px; background: var(--blush);"></div>
+                <span class="mood-day">T</span>
+              </div>
+              <div class="mood-bar-wrap">
+                <div class="mood-bar" style="height: 70px; background: var(--burnt-orange);"></div>
+                <span class="mood-day">F</span>
+              </div>
+              <div class="mood-bar-wrap">
+                <div class="mood-bar" style="height: 55px; background: var(--terracotta);"></div>
+                <span class="mood-day">S</span>
+              </div>
+              <div class="mood-bar-wrap">
+                <div class="mood-bar" style="height: 65px; background: var(--terracotta);"></div>
+                <span class="mood-day">S</span>
+              </div>
+            </div>
+            <div class="mood-legend">
+              <span class="legend-item"><span class="legend-dot" style="background: var(--blush);"></span> calm</span>
+              <span class="legend-item"><span class="legend-dot" style="background: var(--terracotta);"></span> okay</span>
+              <span class="legend-item"><span class="legend-dot" style="background: var(--burnt-orange);"></span> great</span>
+            </div>
+          </div>
+
+          <div class="insight-card">
+            <p class="insight-label">
+              <img src="icons/sun-horizon.svg" class="card-icon" alt="" /> your insight
+            </p>
+            <p class="insight-text">you're most focused on Tuesday and Wednesday mornings. that's your flow window — protect it.</p>
+          </div>
+
+          <div class="affirmation-card">
+            <p class="affirmation-text">"showing up — even imperfectly — is enough. you did that this week."</p>
+          </div>
+
+          <button class="cta-btn" onclick="navigateTo('screen-dashboard')" style="margin-bottom: 8px;">
+            back to today
+          </button>
+
+        </div>
       </div>
 
     </div>
