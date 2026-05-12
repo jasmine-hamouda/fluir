@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fluir</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" type="image/png" href="images/Fluir (512 x 512 px).png" />
+</head>
+<body>
+
+  <div class="page-wrapper">
+    <div class="phone-frame">
+
+      <!-- ============ SCREEN 1: ONBOARDING ============ -->
+      <div class="screen active" id="screen-onboarding">
+        <div class="blob blob-1">
+          <img src="images/blob.svg" alt="" aria-hidden="true" />
+        </div>
+        <div class="blob blob-2">
+          <img src="images/blob(2).svg" alt="" aria-hidden="true" />
+        </div>
+
+        <div class="onboarding-content">
+          <img src="images/Fluir (512 x 512 px).png" alt="Fluir" class="onboarding-icon" />
+          <h1 class="wordmark">fluir</h1>
+          <p class="tagline">finally, something that gets <em>you.</em></p>
+          <p class="onboarding-subtitle">let's set up something that actually works for you.</p>
+
+          <div class="onboarding-form">
+
+            <div class="form-card">
+              <label class="form-label">what's your biggest challenge right now?</label>
+              <div class="chip-group">
+                <button class="chip" onclick="selectChip(this, 'challenge')">
+                  <img src="icons/circle-notch.svg" class="chip-icon" alt="" /> routines
+                </button>
+                <button class="chip" onclick="selectChip(this, 'challenge')">
+                  <img src="icons/eye.svg" class="chip-icon" alt="" /> focus
+                </button>
+                <button class="chip" onclick="selectChip(this, 'challenge')">
+                  <img src="icons/wave-sine.svg" class="chip-icon" alt="" /> emotional regulation
+                </button>
+                <button class="chip" onclick="selectChip(this, 'challenge')">
+                  <img src="icons/warning-circle.svg" class="chip-icon" alt="" /> overwhelm
+                </button>
+              </div>
+            </div>
+
+            <div class="form-card optional-card">
+              <label class="form-label">how long since your diagnosis?</label>
+              <div class="chip-group">
+                <button class="chip" onclick="selectChip(this, 'diagnosis')">under 6 months</button>
+                <button class="chip" onclick="selectChip(this, 'diagnosis')">6–12 months</button>
+                <button class="chip" onclick="selectChip(this, 'diagnosis')">1–2 years</button>
+                <button class="chip" onclick="selectChip(this, 'diagnosis')">2+ years</button>
+              </div>
+              <p class="optional-label">optional — helps us personalise your experience</p>
+            </div>
+
+          </div>
+
+          <button class="cta-btn" onclick="navigateTo('screen-dashboard')">
+            let's go
+          </button>
+        </div>
+      </div>
+
+      <!-- ============ SCREEN 2: DASHBOARD ============ -->
+      <div class="screen" id="screen-dashboard">
+        <div class="screen-scroll">
+
+          <div class="dashboard-header">
+            <div>
+              <p class="greeting-sub">good morning,</p>
+              <h1 class="greeting-name">Maya.</h1>
+            </div>
+            <img src="images/Fluir (512 x 512 px).png" alt="Fluir" class="header-icon" />
+          </div>
+
+          <div class="hero-card">
+            <div class="hero-card-label">
+              <img src="icons/sun-horizon.svg" class="card-icon" alt="" />
+              <span>today's focus</span>
+            </div>
+            <h2 class="hero-task">call the school about Maya's appointment</h2>
+            <div class="time-chip">
+              <img src="icons/clock.svg" class="chip-icon" alt="" /> 15 min
+            </div>
+          </div>
+
+          <div class="mood-section">
+            <p class="section-label">how are you feeling?</p>
+            <div class="mood-row">
+              <button class="mood-btn" onclick="selectMood(this)">
+                <img src="icons/smiley.svg" class="mood-icon" alt="calm" />
+                <span>calm</span>
+              </button>
+              <button class="mood-btn" onclick="selectMood(this)">
+                <img src="icons/smiley-meh.svg" class="mood-icon" alt="okay" />
+                <span>okay</span>
+              </button>
+              <button class="mood-btn" onclick="selectMood(this)">
+                <img src="icons/smiley-nervous.svg" class="mood-icon" alt="overwhelmed" />
+                <span>overwhelmed</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="progress-section">
+            <p class="section-label">today's progress</p>
+            <div class="progress-ring-wrapper">
+              <svg class="progress-ring" viewBox="0 0 80 80">
+                <circle class="ring-bg" cx="40" cy="40" r="32" />
+                <circle class="ring-fill" cx="40" cy="40" r="32" stroke-dasharray="201" stroke-dashoffset="150" />
+              </svg>
+              <div class="progress-text">
+                <span class="progress-num">1</span>
+                <span class="progress-of">of 4</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="nudge-card">
+            <img src="icons/sun-dim.svg" class="nudge-icon" alt="" />
+            <p>feeling stuck? start with just one minute.</p>
+          </div>
+
+        </div>
+
+        <nav class="bottom-nav">
+          <button class="nav-btn active" onclick="navigateTo('screen-dashboard')">
+            <img src="icons/house.svg" alt="Home" />
+            <span>home</span>
+          </button>
+          <button class="nav-btn" onclick="navigateTo('screen-tasks')">
+            <img src="icons/check-square.svg" alt="Tasks" />
+            <span>tasks</span>
+          </button>
+          <button class="nav-btn" onclick="navigateTo('screen-library')">
+            <img src="icons/books.svg" alt="Learn" />
+            <span>learn</span>
+          </button>
+          <button class="nav-btn" onclick="navigateTo('screen-checkin')">
+            <img src="icons/heart.svg" alt="Check-in" />
+            <span>check-in</span>
+          </button>
+          <button class="nav-btn" onclick="navigateTo('screen-community')">
+            <img src="icons/users.svg" alt="Community" />
+            <span>community</span>
+          </button>
+        </nav>
+      </div>
+
+      <!-- ============ SCREEN 3: TASK MANAGER ============ -->
+      <div class="screen" id="screen-tasks">
+        <div class="screen-scroll">
+
+          <div class="screen-header">
+            <h1 class="screen-title">your tasks.</h1>
+            <p class="screen-subtitle">Tuesday, 13 May</p>
+          </div>
+
+          <div class="task-list">
+
+            <div class="task-card" id="task-1">
+              <div class="task-left">
+                <button class="task-check" onclick="completeTask('task-1')" aria-label="complete task">
+                  <img src="icons/check-circle.svg" alt="" />
+                </button>
+                <div class="task-info">
+                  <p class="task-name">call the school</p>
+                  <div class="task-meta">
+                    <span class="time-chip small">
+                      <img src="icons/clock.svg" class="chip-icon" alt="" /> 15 min
+                    </span>
+                  </div>
+                </div>
+              </div>
+              <button class="breakdown-btn" onclick="toggleBreakdown('task-1')">
+                <img src="icons/scissors.svg" alt="" /> break it down
+              </button>
+              <div class="breakdown-steps" id="breakdown-task-1">
+                <p class="step">1. find the school's number</p>
+                <p class="step">2. write down what to say</p>
+                <p class="step">3. make the call</p>
+              </div>
+            </div>
+
+            <div class="task-card" id="task-2">
+              <div class="task-left">
+                <button class="task-check" onclick="completeTask('task-2')" aria-label="complete task">
+                  <img src="icons/check-circle.svg" alt="" />
+                </button>
+                <div class="task-info">
+                  <p class="task-name">reply to Emma's message</p>
+                  <div class="task-meta">
+                    <span class="time-chip small">
+                      <img src="icons/clock.svg" class="chip-icon" alt="" /> 5 min
+                    </span>
+                  </div>
+                </div>
+              </div>
+              <button class="breakdown-btn" onclick="toggleBreakdown('task-2')">
+                <img src="icons/scissors.svg" alt="" /> break it down
+              </button>
+              <div class="breakdown-steps" id="breakdown-task-2">
+                <p class="step">1. open the message</p>
+                <p class="step">2. write a short reply</p>
+                <p class="step">3. send it</p>
+              </div>
+            </div>
+
+            <div class="task-card" id="task-3">
+              <div class="task-left">
+                <button class="task-check" onclick="completeTask('task-3')" aria-label="complete task">
+                  <img src="icons/check-circle.svg" alt="" />
+                </button>
+                <div class="task-info">
+                  <p class="task-name">pick up groceries</p>
+                  <div class="task-meta">
+                    <span class="time-chip small">
+                      <img src="icons/clock.svg" class="chip-icon" alt="" /> 30 min
+                    </span>
+                  </div>
+                </div>
+              </div>
+              <button class="breakdown-btn" onclick="toggleBreakdown('task-3')">
+                <img src="icons/scissors.svg" alt="" /> break it down
+              </button>
+              <div class="breakdown-steps" id="breakdown-task-3">
+                <p class="step">1. check what you need</p>
+                <p class="step">2. write a quick list</p>
+                <p class="step">3. go when you're ready</p>
+              </div>
+            </div>
+
+            <div class="task-card stuck" id="task-4">
+              <div class="task-left">
+                <button class="task-check" onclick="completeTask('task-4')" aria-label="complete task">
+                  <img src="icons/check-circle.svg" alt="" />
+                </button>
+                <div class="task-info">
+                  <p class="task-name">book GP appointment</p>
+                  <div class="task-meta">
+                    <span class="time-chip small">
+                      <img src="icons/clock.svg" class="chip-icon" alt="" /> 10 min
+                    </span>
+                  </div>
+                  <p class="stuck-prompt">where do you want to start?</p>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <button class="start-fresh-btn" onclick="resetTasks()">
+            <img src="icons/arrow-counter-clockwise.svg" alt="" /> start fresh
+          </button>
+
+        </div>
+
+        <nav class="bottom-nav">
+          <button class="nav-btn" onclick="navigateTo('screen-dashboard')">
+            <img src="icons/house.svg" alt="Home" />
+            <span>home</span>
+          </button>
+          <button class="nav-btn active" onclick="navigateTo('screen-tasks')">
+            <img src="icons/check-square.svg" alt="Tasks" />
+            <span>tasks</span>
+          </button>
+          <button class="nav-btn" onclick="navigateTo('screen-library')">
+            <img src="icons/books.svg" alt="Learn" />
+            <span>learn</span>
+          </button>
+          <button class="nav-btn" onclick="navigateTo('screen-checkin')">
+            <img src="icons/heart.svg" alt="Check-in" />
+            <span>check-in</span>
+          </button>
+          <button class="nav-btn" onclick="navigateTo('screen-community')">
+            <img src="icons/users.svg" alt="Community" />
+            <span>community</span>
+          </button>
+        </nav>
+      </div>
+
+      <!-- ============ SCREEN 4: LIBRARY ============ -->
+      <div class="screen" id="screen-library">
+        <div class="screen-scroll">
+
+          <div class="screen-header">
+            <h1 class="screen-title">learn.</h1>
+            <p class="screen-subtitle">short reads, built for your brain.</p>
+          </div>
+
+          <div class="topic-chips">
+            <button class="topic-chip active" onclick="selectTopic(this)">
+              <img src="icons/brain.svg" class="chip-icon" alt="" /> executive functioning
+            </button>
+            <button class="topic-chip" onclick="selectTopic(this)">
+              <img src="icons/clock.svg" class="chip-icon" alt="" /> time management
+            </button>
+            <button class="topic-chip" onclick="selectTopic(this)">
+              <img src="icons/arrow-right.svg" class="chip-icon" alt="" /> procrastination
+            </button>
+            <button class="topic-chip" onclick="selectTopic(this)">
+              <img src="icons/wave-sine.svg" class="chip-icon" alt="" /> emotional regulation
+            </button>
+            <button class="topic-chip" onclick="selectTopic(this)">
+              <img src="icons/eye.svg" class="chip-icon" alt="" /> inattention
+            </button>
+            <button class="topic-chip" onclick="selectTopic(this)">
+              <img src="icons/stack.svg" class="chip-icon" alt="" /> organisation
+            </button>
+          </div>
+
+          <div class="library-cards">
+
+            <div class="library-card featured">
+              <div class="library-card-header" style="background: var(--terracotta);">
+                <img src="icons/brain.svg" class="library-card-icon" alt="" />
+              </div>
+              <div class="library-card-body">
+                <h3 class="library-card-title">what is executive functioning?</h3>
+                <div class="card-footer">
+                  <span class="read-time">
+                    <img src="icons/clock.svg" class="chip-icon" alt="" /> 3 min read
+                  </span>
+                  <button class="audio-btn" onclick="showAudioToast()" aria-label="listen to this article">
+                    <img src="icons/headphones.svg" class="audio-icon" alt="" />
+                    <span>listen</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div class="library-card">
+              <div class="library-card-header" style="background: var(--peach);">
+                <img src="icons/clock.svg" class="library-card-icon" alt="" />
+              </div>
+              <div class="library-card-body">
+                <h3 class="library-card-title">time blindness and what to do about it</h3>
+                <div class="card-footer">
+                  <span class="read-time">
+                    <img src="icons/clock.svg" class="chip-icon" alt="" /> 2 min read
+                  </span>
+                  <button class="audio-btn" onclick="showAudioToast()" aria-label="listen to this article">
+                    <img src="icons/headphones.svg" class="audio-icon" alt="" />
+                    <span>listen</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div class="library-card">
+              <div class="library-card-header" style="background: var(--blush);">
+                <img src="icons/arrow-right.svg" class="library-card-icon" alt="" />
+              </div>
+              <div class="library-card-body">
+                <h3 class="library-card-title">why ADHD brains procrastinate differently</h3>
+                <div class="card-footer">
+                  <span class="read-time">
+                    <img src="icons/clock.svg" class="chip-icon" alt="" /> 3 min read
+                  </span>
+                  <button class="audio-btn" onclick="showAudioToast()" aria-label="listen to this article">
+                    <img src="icons/headphones.svg" class="audio-icon" alt="" />
+                    <span>listen</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div class="library-card">
+              <div class="library-card-header" style="background: var(--terracotta);">
+                <img src="icons/wave-sine.svg" class="library-card-icon" alt="" />
+              </div>
+              <div class="library-card-body">
+                <h3 class="library-card-title">emotional dysregulation — you're not overreacting</h3>
+                <div class="card-footer">
+                  <span class="read-time">
+                    <img src="icons/clock.svg" class="chip-icon" alt="" /> 2 min read
+                  </span>
+                  <button class="audio-btn" onclick="showAudioToast()" aria-label="listen to this article">
+                    <img src="icons/headphones.svg" class="audio-icon" alt="" />
+                    <span>listen</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div class="library-card">
+              <div class="library-card-header" style="background: var(--peach);">
+                <img src="icons/users.svg" class="library-card-icon" alt="" />
+              </div>
+              <div class="library-card-body">
+                <h3 class="library-card-title">talking to your kids about ADHD</h3>
+                <div class="card-footer">
+                  <span class="read-time">
+                    <img src="icons/clock.svg" class="chip-icon" alt="" /> 3 min read
+                  </span>
+                  <button class="audio-btn" onclick="showAudioToast()" aria-label="listen to this article">
+                    <img src="icons/headphones.svg" class="audio-icon" alt="" />
+                    <span>listen</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="premium-banner">
+            <img src="icons/lock-simple.svg" class="premium-icon" alt="" />
+            <div class="premium-text">
+              <p class="premium-title">unlock all content</p>
+              <p class="premium-sub">go premium for full access</p>
+            </div>
+            <button class="premium-btn">go premium</button>
+          </div>
+
+        </div>
+
+        <nav class="bottom-nav">
+          <button class="nav-btn" onclick="navigateTo('screen-dashboard')">
+            <img src="icons/house.svg" alt="Home" />
+            <span>home</span>
+          </button>
+          <button class="nav-btn" onclick="navigateTo('screen-tasks')">
+            <img src="icons/check-square.svg" alt="Tasks" />
+            <span>tasks</span>
+          </button>
+          <button class="nav-btn active" onclick="navigateTo('screen-library')">
+            <img src="icons/books.svg" alt="Learn" />
+            <span>learn</span>
+          </button>
+          <button class="nav-btn" onclick="navigateTo('screen-checkin')">
+            <img src="icons/heart.svg" alt="Check-in" />
+            <span>check-in</span>
+          </button>
+          <button class="nav-btn" onclick="navigateTo('screen-community')">
+            <img src="icons/users.svg" alt="Community" />
+            <span>community</span>
+          </button>
+        </nav>
+      </div>
+
+      <!-- ============ SCREEN 5: DAILY CHECK-IN ============ -->
+      <div class="screen" id="screen-checkin">
+        <div class="screen-scroll checkin-screen">
+
+          <div class="screen-header">
+            <h1 class="screen-title">how are you today?</h1>
+            <p class="screen-subtitle">takes less than a minute.</p>
+          </div>
+
+          <div class="checkin-mood">
+            <button class="checkin-mood-btn" onclick="selectCheckinMood(this)">
+              <img src="icons/smiley.svg" class="checkin-mood-icon" alt="calm" />
+              <span>calm</span>
+            </button>
+            <button class="checkin-mood-btn" onclick="selectCheckinMood(this)">
+              <img src="icons/smiley-meh.svg" class="checkin-mood-icon" alt="okay" />
+              <span>okay</span>
+            </button>
+            <button class="checkin-mood-btn" onclick="selectCheckinMood(this)">
+              <img src="icons/smiley-nervous.svg" class="checkin-mood-icon" alt="overwhelmed" />
+              <span>overwhelmed</span>
+            </button>
+          </div>
+
+          <div class="checkin-form">
+            <div class="checkin-field">
+              <label class="form-label">what went well today?</label>
+              <textarea class="checkin-input" placeholder="even something small counts..." rows="3"></textarea>
+            </div>
+            <div class="checkin-field">
+              <label class="form-label">what was hard?</label>
+              <textarea class="checkin-input" placeholder="no judgement here..." rows="3"></textarea>
+            </div>
+          </div>
+
+          <button class="cta-btn" onclick="submitCheckin()">save today</button>
+
+          <div class="checkin-confirmation" id="checkin-confirmation">
+            <img src="icons/check-fat.svg" class="confirm-icon" alt="saved" />
+            <p>saved — see you tomorrow.</p>
+            <button class="edit-link" onclick="editCheckin()">edit today</button>
+          </div>
+
+        </div>
+
+        <nav class="bottom-nav">
+          <button class="nav-btn" onclick="navigateTo('screen-dashboard')">
+            <img src="icons/house.svg" alt="Home" />
+            <span>home</span>
+          </button>
+          <button class="nav-btn" onclick="navigateTo('screen-tasks')">
+            <img src="icons/check-square.svg" alt="Tasks" />
+            <span>tasks</span>
+          </button>
+          <button class="nav-btn" onclick="navigateTo('screen-library')">
+            <img src="icons/books.svg" alt="Learn" />
+            <span>learn</span>
+          </button>
+          <button class="nav-btn active" onclick="navigateTo('screen-checkin')">
+            <img src="icons/heart.svg" alt="Check-in" />
+            <span>check-in</span>
+          </button>
+          <button class="nav-btn" onclick="navigateTo('screen-community')">
+            <img src="icons/users.svg" alt="Community" />
+            <span>community</span>
+          </button>
+        </nav>
+      </div>
+
+      <!-- ============ SCREEN 6: COMMUNITY ============ -->
+      <div class="screen" id="screen-community">
+        <div class="screen-scroll community-screen">
+          <div class="community-content">
+            <img src="images/Fluir (512 x 512 px).png" alt="Fluir" class="community-icon" />
+            <h2 class="community-title">community is coming.</h2>
+            <p class="community-text">a space to connect with other mums who get it. no advice columns. no toxic positivity. just real conversations.</p>
+            <button class="cta-btn community-btn">join the waitlist</button>
+          </div>
+        </div>
+
+        <nav class="bottom-nav">
+          <button class="nav-btn" onclick="navigateTo('screen-dashboard')">
+            <img src="icons/house.svg" alt="Home" />
+            <span>home</span>
+          </button>
+          <button class="nav-btn" onclick="navigateTo('screen-tasks')">
+            <img src="icons/check-square.svg" alt="Tasks" />
+            <span>tasks</span>
+          </button>
+          <button class="nav-btn" onclick="navigateTo('screen-library')">
+            <img src="icons/books.svg" alt="Learn" />
+            <span>learn</span>
+          </button>
+          <button class="nav-btn" onclick="navigateTo('screen-checkin')">
+            <img src="icons/heart.svg" alt="Check-in" />
+            <span>check-in</span>
+          </button>
+          <button class="nav-btn active" onclick="navigateTo('screen-community')">
+            <img src="icons/users.svg" alt="Community" />
+            <span>community</span>
+          </button>
+        </nav>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Audio toast notification -->
+  <div class="audio-toast" id="audio-toast" role="status" aria-live="polite">
+    <img src="icons/headphones.svg" class="toast-icon" alt="" />
+    <span>audio coming in the full version</span>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
