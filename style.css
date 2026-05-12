@@ -7,6 +7,20 @@
 }
 
 @font-face {
+  font-family: 'ClashDisplay';
+  src: url('fonts/ClashDisplay-Medium.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'ClashDisplay';
+  src: url('fonts/ClashDisplay-Light.woff2') format('woff2');
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
   font-family: 'Inter';
   src: url('fonts/Inter_18pt-Regular.ttf') format('truetype');
   font-weight: 400;
@@ -448,7 +462,7 @@ textarea {
 }
 
 .hero-task {
-  font-family: 'Inter', sans-serif;
+  font-family: 'ClashDisplay', sans-serif;
   font-weight: 500;
   font-size: 20px;
   color: var(--text-dark);
@@ -869,8 +883,9 @@ textarea {
 }
 
 .library-card-title {
+  font-family: 'ClashDisplay', sans-serif;
   font-size: 14px;
-  font-weight: 400;
+  font-weight: 300;
   color: var(--text-dark);
   line-height: 1.3;
   margin-bottom: 8px;
@@ -879,7 +894,7 @@ textarea {
 .library-card.featured .library-card-title {
   font-size: 16px;
   font-weight: 500;
-  font-family: 'Inter', sans-serif;
+  font-family: 'ClashDisplay', sans-serif;
 }
 
 .read-time {
@@ -1176,6 +1191,7 @@ textarea {
 
 .reflection-title {
   font-family: 'ClashDisplay', sans-serif;
+  font-weight: 500;
   font-size: 30px;
   color: var(--text-dark);
   line-height: 1.2;
@@ -1201,6 +1217,7 @@ textarea {
 
 .stat-number {
   font-family: 'ClashDisplay', sans-serif;
+  font-weight: 500;
   font-size: 32px;
   color: var(--burnt-orange);
   line-height: 1;
@@ -1296,6 +1313,22 @@ textarea {
   color: var(--text-dark);
   line-height: 1.5;
   font-weight: 400;
+}
+
+.insight-source {
+  font-size: 11px;
+  color: var(--text-light);
+  font-style: italic;
+  margin-top: 10px;
+}
+
+.affirmation-source {
+  font-size: 12px;
+  color: rgba(255,255,255,0.7);
+  margin-top: 10px;
+  text-align: center;
+  font-style: normal;
+  font-weight: 500;
 }
 
 .affirmation-card {
