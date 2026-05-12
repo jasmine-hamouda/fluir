@@ -1,20 +1,14 @@
 // ============ NAVIGATION ============
 function navigateTo(screenId) {
-  // Hide all screens
   document.querySelectorAll('.screen').forEach(screen => {
     screen.classList.remove('active');
   });
-
-  // Show target screen
   const target = document.getElementById(screenId);
   if (target) {
     target.classList.add('active');
-    // Scroll to top
     const scroll = target.querySelector('.screen-scroll');
     if (scroll) scroll.scrollTop = 0;
   }
-
-  // Update nav active states
   document.querySelectorAll('.nav-btn').forEach(btn => {
     btn.classList.remove('active');
   });
@@ -22,10 +16,8 @@ function navigateTo(screenId) {
 
 // ============ CHIP SELECTION ============
 function selectChip(chip, group) {
-  // Deselect all chips in the same group
   const allChips = chip.closest('.chip-group').querySelectorAll('.chip');
   allChips.forEach(c => c.classList.remove('selected'));
-  // Select clicked chip
   chip.classList.add('selected');
 }
 
@@ -56,32 +48,38 @@ function completeTask(taskId) {
   if (card) {
     card.classList.toggle('completed');
     updateProgress();
+    checkAllComplete();
   }
 }
 
 function updateProgress() {
   const total = document.querySelectorAll('.task-card').length;
   const completed = document.querySelectorAll('.task-card.completed').length;
-
-  // Update progress ring
   const circumference = 201;
   const offset = circumference - (completed / total) * circumference;
   const ring = document.querySelector('.ring-fill');
-  if (ring) {
-    ring.style.strokeDashoffset = offset;
-  }
-
-  // Update progress text
+  if (ring) ring.style.strokeDashoffset = offset;
   const numEl = document.querySelector('.progress-num');
   if (numEl) numEl.textContent = completed;
+}
+
+function checkAllComplete() {
+  const total = document.querySelectorAll('.task-card').length;
+  const completed = document.querySelectorAll('.task-card.completed').length;
+  const completeState = document.getElementById('task-complete-state');
+  if (completeState) {
+    if (completed === total) {
+      completeState.classList.add('visible');
+    } else {
+      completeState.classList.remove('visible');
+    }
+  }
 }
 
 // ============ TASK BREAKDOWN ============
 function toggleBreakdown(taskId) {
   const steps = document.getElementById('breakdown-' + taskId);
-  if (steps) {
-    steps.classList.toggle('open');
-  }
+  if (steps) steps.classList.toggle('open');
 }
 
 // ============ RESET TASKS ============
@@ -92,6 +90,8 @@ function resetTasks() {
   document.querySelectorAll('.breakdown-steps').forEach(steps => {
     steps.classList.remove('open');
   });
+  const completeState = document.getElementById('task-complete-state');
+  if (completeState) completeState.classList.remove('visible');
   updateProgress();
 }
 
@@ -100,7 +100,6 @@ function submitCheckin() {
   const confirmation = document.getElementById('checkin-confirmation');
   const form = document.querySelector('.checkin-form');
   const cta = document.querySelector('#screen-checkin .cta-btn');
-
   if (confirmation) {
     confirmation.classList.add('visible');
     if (form) form.style.display = 'none';
@@ -112,17 +111,21 @@ function editCheckin() {
   const confirmation = document.getElementById('checkin-confirmation');
   const form = document.querySelector('.checkin-form');
   const cta = document.querySelector('#screen-checkin .cta-btn');
-
   if (confirmation) {
     confirmation.classList.remove('visible');
     if (form) form.style.display = 'flex';
     if (cta) cta.style.display = 'block';
   }
+}
 
-  // Auto-hide after 3 seconds
-  setTimeout(() => {
-    if (confirmation) confirmation.classList.remove('visible');
-  }, 3000);
+// ============ WAITLIST ============
+function joinWaitlist() {
+  const confirmation = document.getElementById('waitlist-confirmation');
+  const form = document.querySelector('.waitlist-form');
+  if (confirmation && form) {
+    form.style.display = 'none';
+    confirmation.classList.add('visible');
+  }
 }
 
 // ============ AUDIO TOAST ============
@@ -137,6 +140,5 @@ function showAudioToast() {
 
 // ============ INIT ============
 document.addEventListener('DOMContentLoaded', () => {
-  // Make sure onboarding is showing first
   navigateTo('screen-onboarding');
 });

@@ -26,6 +26,21 @@
           <p class="tagline">finally, something that gets <em>you.</em></p>
           <p class="onboarding-subtitle">let's set up something that actually works for you.</p>
 
+          <div class="value-prop-card">
+            <div class="value-prop-item">
+              <img src="icons/check-square.svg" class="vp-icon" alt="" />
+              <span>manage tasks at your own pace</span>
+            </div>
+            <div class="value-prop-item">
+              <img src="icons/brain.svg" class="vp-icon" alt="" />
+              <span>understand your ADHD brain</span>
+            </div>
+            <div class="value-prop-item">
+              <img src="icons/heart.svg" class="vp-icon" alt="" />
+              <span>check in with yourself daily</span>
+            </div>
+          </div>
+
           <div class="onboarding-form">
 
             <div class="form-card">
@@ -126,6 +141,17 @@
           <div class="nudge-card">
             <img src="icons/sun-dim.svg" class="nudge-icon" alt="" />
             <p>feeling stuck? start with just one minute.</p>
+          </div>
+
+          <div class="reminder-card">
+            <img src="icons/heart.svg" class="nudge-icon" alt="" />
+            <p>check-in reminder set for <strong>8pm tonight</strong></p>
+          </div>
+
+          <div class="all-done-state" id="all-done-state">
+            <img src="icons/check-fat.svg" class="done-icon" alt="" />
+            <h3 class="done-title">you did it.</h3>
+            <p class="done-text">that's enough for today. rest is part of the process.</p>
           </div>
 
         </div>
@@ -254,6 +280,12 @@
               </div>
             </div>
 
+          </div>
+
+          <div class="task-complete-state" id="task-complete-state">
+            <img src="icons/check-fat.svg" class="done-icon" alt="" />
+            <h3 class="done-title">you did it.</h3>
+            <p class="done-text">that's enough for today. rest is part of the process.</p>
           </div>
 
           <button class="start-fresh-btn" onclick="resetTasks()">
@@ -521,7 +553,14 @@
             <img src="images/Fluir (512 x 512 px).png" alt="Fluir" class="community-icon" />
             <h2 class="community-title">community is coming.</h2>
             <p class="community-text">a space to connect with other mums who get it. no advice columns. no toxic positivity. just real conversations.</p>
-            <button class="cta-btn community-btn">join the waitlist</button>
+            <div class="waitlist-form">
+              <input type="email" class="waitlist-input" placeholder="your email address" aria-label="email address for waitlist" />
+              <button class="cta-btn" onclick="joinWaitlist()">join the waitlist</button>
+            </div>
+            <div class="waitlist-confirmation" id="waitlist-confirmation">
+              <img src="icons/check-fat.svg" class="confirm-icon" alt="" />
+              <p>you're on the list. we'll be in touch.</p>
+            </div>
           </div>
         </div>
 

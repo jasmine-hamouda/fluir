@@ -1140,6 +1140,151 @@ textarea {
   }
 }
 
+/* ============ VALUE PROPOSITION CARD ============ */
+.value-prop-card {
+  width: 100%;
+  background: white;
+  border-radius: var(--radius-card);
+  padding: 16px 20px;
+  margin-bottom: 20px;
+  box-shadow: var(--shadow-soft);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.value-prop-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-dark);
+}
+
+.vp-icon {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+  filter: sepia(1) saturate(3) hue-rotate(340deg) brightness(0.7);
+}
+
+/* ============ REMINDER CARD ============ */
+.reminder-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: white;
+  border-radius: var(--radius-card);
+  padding: 14px 20px;
+  margin-top: 12px;
+  box-shadow: var(--shadow-soft);
+  border-left: 3px solid var(--terracotta);
+}
+
+.reminder-card p {
+  font-size: 13px;
+  color: var(--text-dark);
+  font-weight: 400;
+  line-height: 1.4;
+}
+
+.reminder-card strong {
+  font-weight: 600;
+  color: var(--terracotta);
+}
+
+/* ============ COMPLETION STATE ============ */
+.task-complete-state {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 24px;
+  background: var(--peach);
+  border-radius: var(--radius-card);
+  margin-bottom: 16px;
+  gap: 8px;
+}
+
+.task-complete-state.visible {
+  display: flex;
+}
+
+.done-icon {
+  width: 36px;
+  height: 36px;
+  filter: sepia(1) saturate(3) hue-rotate(340deg) brightness(0.7);
+}
+
+.done-title {
+  font-family: 'ClashDisplay', sans-serif;
+  font-weight: 500;
+  font-size: 22px;
+  color: var(--text-dark);
+}
+
+.done-text {
+  font-size: 13px;
+  color: var(--text-mid);
+  line-height: 1.5;
+}
+
+/* ============ WAITLIST FORM ============ */
+.waitlist-form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+.waitlist-input {
+  width: 100%;
+  padding: 14px 18px;
+  background: var(--peach);
+  border: 2px solid transparent;
+  border-radius: var(--radius-pill);
+  font-size: 14px;
+  color: var(--text-dark);
+  font-family: 'Inter', sans-serif;
+  outline: none;
+  transition: all 0.2s ease;
+  min-height: 54px;
+}
+
+.waitlist-input::placeholder {
+  color: var(--text-light);
+}
+
+.waitlist-input:focus {
+  border-color: var(--terracotta);
+  background: white;
+}
+
+.waitlist-confirmation {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 20px;
+  background: var(--peach);
+  border-radius: var(--radius-card);
+  margin-top: 12px;
+  text-align: center;
+  width: 100%;
+}
+
+.waitlist-confirmation.visible {
+  display: flex;
+}
+
+.waitlist-confirmation p {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-dark);
+}
+
 /* ============ SEE WEEK BUTTON ============ */
 .see-week-btn {
   display: inline-flex;
