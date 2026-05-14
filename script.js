@@ -1,3 +1,52 @@
+// ============ TASK DETAIL ============
+let currentDetailTaskId = null;
+
+function openTaskDetail(taskId, title, urgency, time, cat, color, date, steps, tip) {
+  currentDetailTaskId = taskId;
+  document.getElementById('detail-title').textContent = title;
+  document.getElementById('detail-date').textContent = date;
+  document.getElementById('detail-tip').textContent = tip;
+  document.getElementById('detail-color-bar').style.background = color;
+
+  // Chips
+  document.getElementById('detail-chips').innerHTML = `
+    <span class="urgency-chip ${urgency}">${urgency}</span>
+    <span class="time-chip small"><img src="icons/clock.svg" class="chip-icon" alt="" /> ${time}</span>
+    <span class="cat-tag" style="background:${color};">${cat}</span>
+  `;
+
+  // Steps
+  document.getElementById('detail-steps').innerHTML = steps.map((step, i) => `
+    <div class="detail-step">
+      <span class="detail-step-num">${i+1}</span>
+      <span>${step}</span>
+    </div>
+  `).join('');
+
+  // Update complete button
+  const card = document.getElementById(taskId);
+  const isComplete = card && card.classList.contains('completed');
+  const btn = document.getElementById('detail-complete-btn');
+  btn.textContent = isComplete ? 'completed ✓' : 'mark complete';
+  btn.style.opacity = isComplete ? '0.5' : '1';
+
+  navigateTo('screen-task-detail');
+}
+
+function completeFromDetail() {
+  if (!currentDetailTaskId) return;
+  const card = document.getElementById(currentDetailTaskId);
+  if (card) {
+    card.classList.add('completed');
+    updateProgress();
+    checkAllComplete();
+  }
+  const btn = document.getElementById('detail-complete-btn');
+  btn.textContent = 'completed ✓';
+  btn.style.opacity = '0.5';
+  setTimeout(() => navigateTo('screen-tasks'), 800);
+}
+
 // ============ NAVIGATION ============
 function navigateTo(screenId) {
   document.querySelectorAll('.screen').forEach(screen => screen.classList.remove('active'));
@@ -281,26 +330,75 @@ function organiseBrainDump() {
   setTimeout(() => {
     loading.classList.remove('visible');
     const sentences = text.split(/[,.\n]+/).map(s => s.trim()).filter(s => s.length > 3);
-    const tasks = sentences.slice(0, 6).map(sentence => {
+    const tasks = sentences.slice(0, 6).map((sentence, i) => {
       const lower = sentence.toLowerCase();
       let cat = 'personal', color = '#FFE4D0';
       for (const rule of dumpKeywords) {
         if (rule.keywords.some(k => lower.includes(k))) { cat = rule.cat; color = rule.color; break; }
       }
-      return { title: sentence, cat, color };
+      return { id: i, title: sentence, cat, color };
     });
 
     const taskListEl = document.getElementById('dump-task-list');
     taskListEl.innerHTML = tasks.map(t => `
-      <div class="dump-task-item">
-        <div class="dump-task-dot" style="background: ${t.color};"></div>
-        <p>${t.title}</p>
-        <span class="cat-tag" style="background: ${t.color};">${t.cat}</span>
+      <div class="dump-task-item" id="dump-item-${t.id}">
+        <div class="dump-task-main">
+          <div class="dump-task-dot" style="background:${t.color};"></div>
+          <p class="dump-task-title">${t.title}</p>
+          <span class="cat-tag dump-cat-tag" id="dump-cat-label-${t.id}" style="background:${t.color};">${t.cat}</span>
+          <button class="dump-edit-btn" onclick="openDumpEditOverlay(${t.id}, '${t.title.replace(/'/g, "\\'")}', '${t.cat}', '${t.color}')">edit</button>
+        </div>
       </div>`).join('');
 
     taskListEl.dataset.tasks = JSON.stringify(tasks);
     results.classList.add('visible');
   }, 2000);
+}
+
+function openDumpEditOverlay(id, title, cat, color) {
+  const overlay = document.getElementById('dump-edit-overlay');
+  overlay.dataset.taskId = id;
+  document.getElementById('dump-overlay-title').value = title;
+  overlay.querySelectorAll('.dump-inline-cat').forEach(btn => {
+    btn.classList.toggle('selected', btn.dataset.cat === cat);
+  });
+  overlay.dataset.cat = cat;
+  overlay.dataset.color = color;
+  overlay.classList.add('active');
+}
+
+function closeDumpEditOverlay() {
+  document.getElementById('dump-edit-overlay').classList.remove('active');
+}
+
+function pickDumpCat(id, btn, cat, color) {
+  btn.closest('.dump-inline-cats').querySelectorAll('.dump-inline-cat').forEach(b => b.classList.remove('selected'));
+  btn.classList.add('selected');
+  const overlay = document.getElementById('dump-edit-overlay');
+  overlay.dataset.cat = cat;
+  overlay.dataset.color = color;
+}
+
+function saveDumpOverlayEdit() {
+  const overlay = document.getElementById('dump-edit-overlay');
+  const id = parseInt(overlay.dataset.taskId);
+  const newTitle = document.getElementById('dump-overlay-title').value.trim();
+  const newCat = overlay.dataset.cat || 'personal';
+  const newColor = overlay.dataset.color || '#FFE4D0';
+  if (!newTitle) return;
+  const item = document.getElementById(`dump-item-${id}`);
+  if (item) {
+    item.querySelector('.dump-task-title').textContent = newTitle;
+    item.querySelector('.dump-task-dot').style.background = newColor;
+    const label = document.getElementById(`dump-cat-label-${id}`);
+    if (label) { label.textContent = newCat; label.style.background = newColor; }
+  }
+  const taskListEl = document.getElementById('dump-task-list');
+  const tasks = JSON.parse(taskListEl.dataset.tasks || '[]');
+  const task = tasks.find(t => t.id === id);
+  if (task) { task.title = newTitle; task.cat = newCat; task.color = newColor; }
+  taskListEl.dataset.tasks = JSON.stringify(tasks);
+  closeDumpEditOverlay();
 }
 
 function addDumpTasks() {
