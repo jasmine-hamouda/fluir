@@ -77,6 +77,8 @@ function toggleBreakdown(taskId) {
 
 // ============ RESET TASKS ============
 function resetTasks() {
+  const confirmed = confirm("this will clear all your completed tasks. ready to start fresh?");
+  if (!confirmed) return;
   document.querySelectorAll('.task-card').forEach(card => card.classList.remove('completed'));
   document.querySelectorAll('.breakdown-steps').forEach(steps => steps.classList.remove('open'));
   const completeState = document.getElementById('task-complete-state');
@@ -132,6 +134,33 @@ function addCustomCategory() {
 }
 
 // ============ AI BREAKDOWN SIMULATION ============
+const tipTemplates = {
+  call: "phone calls take more out of ADHD brains than most people realise. mid-morning is usually when your brain is warmest for this.",
+  email: "a little movement before replying can help your brain shift gears. even just standing up and stretching first.",
+  groceries: "click and collect exists for exactly this. same-day options at most supermarkets — your future self will thank you.",
+  clean: "putting something on to listen to while you clean is a genuine strategy. your brain loves a soundtrack.",
+  book: "once it is done it is done. starting is the hardest part — after that it takes care of itself.",
+  write: "20 minutes of writing is still writing. short focused sprints work beautifully for ADHD brains.",
+  kids: "you show up for your kids every day. this is just one more way you do that.",
+  health: "taking care of yourself makes everything else more possible. this one counts.",
+  work: "one focused hour does more than three scattered ones. find your window and protect it.",
+  default: "you do not have to do this perfectly. you just have to start."
+};
+
+function getTip(title) {
+  const t = title.toLowerCase();
+  if (t.includes('call') || t.includes('phone') || t.includes('ring')) return tipTemplates.call;
+  if (t.includes('email') || t.includes('reply') || t.includes('message')) return tipTemplates.email;
+  if (t.includes('groceries') || t.includes('shop') || t.includes('buy') || t.includes('pick up')) return tipTemplates.groceries;
+  if (t.includes('clean') || t.includes('tidy') || t.includes('wash')) return tipTemplates.clean;
+  if (t.includes('book') || t.includes('appointment') || t.includes('schedule')) return tipTemplates.book;
+  if (t.includes('write') || t.includes('report') || t.includes('draft') || t.includes('essay')) return tipTemplates.write;
+  if (t.includes('kids') || t.includes('school') || t.includes('mia') || t.includes('pickup')) return tipTemplates.kids;
+  if (t.includes('gp') || t.includes('doctor') || t.includes('health') || t.includes('medical')) return tipTemplates.health;
+  if (t.includes('work') || t.includes('meeting') || t.includes('presentation')) return tipTemplates.work;
+  return tipTemplates.default;
+}
+
 const breakdownTemplates = {
   call: ['find the contact number', 'write down what you need to say', 'make the call'],
   email: ['open your email', 'write a short clear message', 'send it'],
@@ -214,6 +243,8 @@ function addTask() {
   const stepsEl = document.getElementById('breakdown-preview-steps');
   const stepsHTML = stepsEl && stepsEl.innerHTML ? stepsEl.innerHTML : '<p class="step">1. take a breath and start</p><p class="step">2. do the first small thing</p><p class="step">3. keep going</p>';
 
+  const tip = getTip(title);
+
   const taskHTML = `
     <div class="task-card" id="${taskId}" data-category="${catName}" data-urgency="${urgency}" style="--task-color: ${catColor};">
       <div class="task-color-bar"></div>
@@ -238,6 +269,10 @@ function addTask() {
         </button>
         <div class="breakdown-steps" id="breakdown-${taskId}">
           ${stepsHTML}
+        </div>
+        <div class="fluir-tip">
+          <img src="icons/sun-dim.svg" class="tip-icon" alt="" />
+          <p>${tip}</p>
         </div>
       </div>
     </div>

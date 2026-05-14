@@ -772,26 +772,27 @@ textarea {
   justify-content: center;
   gap: 8px;
   padding: 16px;
-  background: var(--burnt-orange);
-  color: white;
+  background: white;
+  color: var(--text-mid);
   border-radius: var(--radius-pill);
   font-size: 14px;
-  font-weight: 600;
+  font-weight: 500;
   transition: all 0.2s ease;
   min-height: 54px;
-  box-shadow: 0 4px 16px rgba(201, 79, 30, 0.3);
+  border: 2px solid var(--peach);
   margin-bottom: 8px;
 }
 
 .start-fresh-btn img {
   width: 16px;
   height: 16px;
-  filter: brightness(0) invert(1);
+  filter: sepia(1) saturate(1) hue-rotate(340deg) brightness(0.7);
+  opacity: 0.6;
 }
 
 .start-fresh-btn:hover {
-  background: #b04418;
-  transform: translateY(-1px);
+  background: var(--peach);
+  border-color: var(--blush);
 }
 
 /* ============ LIBRARY ============ */
@@ -1385,6 +1386,33 @@ textarea {
   font-size: 10px;
   font-weight: 500;
   color: var(--text-dark);
+}
+
+/* ============ FLUIR TIP ============ */
+.fluir-tip {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  background: rgba(232, 196, 184, 0.3);
+  border-radius: var(--radius-sm);
+  padding: 10px 14px;
+  margin-top: 10px;
+}
+
+.tip-icon {
+  width: 14px;
+  height: 14px;
+  flex-shrink: 0;
+  margin-top: 2px;
+  filter: sepia(1) saturate(2) hue-rotate(340deg) brightness(0.7);
+  opacity: 0.7;
+}
+
+.fluir-tip p {
+  font-size: 12px;
+  color: var(--text-mid);
+  line-height: 1.5;
+  font-style: italic;
 }
 
 /* ============ FLOATING ACTION BUTTON ============ */
