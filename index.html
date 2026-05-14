@@ -179,97 +179,135 @@
         <div class="screen-scroll">
 
           <div class="screen-header">
-            <h1 class="screen-title">your tasks.</h1>
-            <p class="screen-subtitle">Tuesday, 13 May</p>
+            <div>
+              <h1 class="screen-title">your tasks.</h1>
+              <p class="screen-subtitle">Thursday, 15 May</p>
+            </div>
           </div>
 
-          <div class="task-list">
+          <!-- Category filter chips -->
+          <div class="category-filter">
+            <button class="cat-filter-chip active" onclick="filterCategory(this, 'all')">all</button>
+            <button class="cat-filter-chip" onclick="filterCategory(this, 'kids')" style="--cat-color: #F0E0A0;">kids</button>
+            <button class="cat-filter-chip" onclick="filterCategory(this, 'work')" style="--cat-color: #B8D8C8;">work</button>
+            <button class="cat-filter-chip" onclick="filterCategory(this, 'home')" style="--cat-color: #B8D4E8;">home</button>
+            <button class="cat-filter-chip" onclick="filterCategory(this, 'health')" style="--cat-color: #D0C0E8;">health</button>
+          </div>
 
-            <div class="task-card" id="task-1">
-              <div class="task-left">
-                <button class="task-check" onclick="completeTask('task-1')" aria-label="complete task">
-                  <img src="icons/check-circle.svg" alt="" />
-                </button>
-                <div class="task-info">
-                  <p class="task-name">call the school about Mia</p>
-                  <div class="task-meta">
-                    <span class="time-chip small">
-                      <img src="icons/clock.svg" class="chip-icon" alt="" /> 15 min
-                    </span>
+          <div class="task-list" id="task-list">
+
+            <div class="task-card" id="task-1" data-category="kids" data-urgency="urgent" style="--task-color: #F0E0A0;">
+              <div class="task-color-bar"></div>
+              <div class="task-body">
+                <div class="task-top">
+                  <div class="task-left">
+                    <button class="task-check" onclick="completeTask('task-1')" aria-label="complete task">
+                      <img src="icons/check-circle.svg" alt="" />
+                    </button>
+                    <div class="task-info">
+                      <p class="task-name">call the school about Mia</p>
+                      <div class="task-meta">
+                        <span class="urgency-chip urgent">urgent</span>
+                        <span class="time-chip small"><img src="icons/clock.svg" class="chip-icon" alt="" /> 15 min</span>
+                        <span class="cat-tag" style="background: #F0E0A0;">kids</span>
+                      </div>
+                    </div>
                   </div>
                 </div>
-              </div>
-              <button class="breakdown-btn" onclick="toggleBreakdown('task-1')">
-                <img src="icons/scissors.svg" alt="" /> break it down
-              </button>
-              <div class="breakdown-steps" id="breakdown-task-1">
-                <p class="step">1. find the school's number</p>
-                <p class="step">2. write down what to say</p>
-                <p class="step">3. make the call</p>
+                <button class="breakdown-btn" onclick="toggleBreakdown('task-1')">
+                  <img src="icons/scissors.svg" alt="" /> break it down
+                </button>
+                <div class="breakdown-steps" id="breakdown-task-1">
+                  <p class="step">1. find the school's number</p>
+                  <p class="step">2. write down what to say</p>
+                  <p class="step">3. make the call</p>
+                </div>
               </div>
             </div>
 
-            <div class="task-card" id="task-2">
-              <div class="task-left">
-                <button class="task-check" onclick="completeTask('task-2')" aria-label="complete task">
-                  <img src="icons/check-circle.svg" alt="" />
-                </button>
-                <div class="task-info">
-                  <p class="task-name">reply to Emma's message</p>
-                  <div class="task-meta">
-                    <span class="time-chip small">
-                      <img src="icons/clock.svg" class="chip-icon" alt="" /> 5 min
-                    </span>
+            <div class="task-card" id="task-2" data-category="work" data-urgency="high" style="--task-color: #B8D8C8;">
+              <div class="task-color-bar"></div>
+              <div class="task-body">
+                <div class="task-top">
+                  <div class="task-left">
+                    <button class="task-check" onclick="completeTask('task-2')" aria-label="complete task">
+                      <img src="icons/check-circle.svg" alt="" />
+                    </button>
+                    <div class="task-info">
+                      <p class="task-name">reply to Emma's message</p>
+                      <div class="task-meta">
+                        <span class="urgency-chip high">high</span>
+                        <span class="time-chip small"><img src="icons/clock.svg" class="chip-icon" alt="" /> 5 min</span>
+                        <span class="cat-tag" style="background: #B8D8C8;">work</span>
+                      </div>
+                    </div>
                   </div>
                 </div>
-              </div>
-              <button class="breakdown-btn" onclick="toggleBreakdown('task-2')">
-                <img src="icons/scissors.svg" alt="" /> break it down
-              </button>
-              <div class="breakdown-steps" id="breakdown-task-2">
-                <p class="step">1. open the message</p>
-                <p class="step">2. write a short reply</p>
-                <p class="step">3. send it</p>
+                <button class="breakdown-btn" onclick="toggleBreakdown('task-2')">
+                  <img src="icons/scissors.svg" alt="" /> break it down
+                </button>
+                <div class="breakdown-steps" id="breakdown-task-2">
+                  <p class="step">1. open the message</p>
+                  <p class="step">2. write a short reply</p>
+                  <p class="step">3. send it</p>
+                </div>
               </div>
             </div>
 
-            <div class="task-card" id="task-3">
-              <div class="task-left">
-                <button class="task-check" onclick="completeTask('task-3')" aria-label="complete task">
-                  <img src="icons/check-circle.svg" alt="" />
-                </button>
-                <div class="task-info">
-                  <p class="task-name">pick up groceries</p>
-                  <div class="task-meta">
-                    <span class="time-chip small">
-                      <img src="icons/clock.svg" class="chip-icon" alt="" /> 30 min
-                    </span>
+            <div class="task-card" id="task-3" data-category="home" data-urgency="medium" style="--task-color: #B8D4E8;">
+              <div class="task-color-bar"></div>
+              <div class="task-body">
+                <div class="task-top">
+                  <div class="task-left">
+                    <button class="task-check" onclick="completeTask('task-3')" aria-label="complete task">
+                      <img src="icons/check-circle.svg" alt="" />
+                    </button>
+                    <div class="task-info">
+                      <p class="task-name">pick up groceries</p>
+                      <div class="task-meta">
+                        <span class="urgency-chip medium">medium</span>
+                        <span class="time-chip small"><img src="icons/clock.svg" class="chip-icon" alt="" /> 30 min</span>
+                        <span class="cat-tag" style="background: #B8D4E8;">home</span>
+                      </div>
+                    </div>
                   </div>
                 </div>
-              </div>
-              <button class="breakdown-btn" onclick="toggleBreakdown('task-3')">
-                <img src="icons/scissors.svg" alt="" /> break it down
-              </button>
-              <div class="breakdown-steps" id="breakdown-task-3">
-                <p class="step">1. check what you need</p>
-                <p class="step">2. write a quick list</p>
-                <p class="step">3. go when you're ready</p>
+                <button class="breakdown-btn" onclick="toggleBreakdown('task-3')">
+                  <img src="icons/scissors.svg" alt="" /> break it down
+                </button>
+                <div class="breakdown-steps" id="breakdown-task-3">
+                  <p class="step">1. check what you need</p>
+                  <p class="step">2. write a quick list</p>
+                  <p class="step">3. go when you're ready</p>
+                </div>
               </div>
             </div>
 
-            <div class="task-card stuck" id="task-4">
-              <div class="task-left">
-                <button class="task-check" onclick="completeTask('task-4')" aria-label="complete task">
-                  <img src="icons/check-circle.svg" alt="" />
-                </button>
-                <div class="task-info">
-                  <p class="task-name">book GP appointment</p>
-                  <div class="task-meta">
-                    <span class="time-chip small">
-                      <img src="icons/clock.svg" class="chip-icon" alt="" /> 10 min
-                    </span>
+            <div class="task-card" id="task-4" data-category="health" data-urgency="low" style="--task-color: #D0C0E8;">
+              <div class="task-color-bar"></div>
+              <div class="task-body">
+                <div class="task-top">
+                  <div class="task-left">
+                    <button class="task-check" onclick="completeTask('task-4')" aria-label="complete task">
+                      <img src="icons/check-circle.svg" alt="" />
+                    </button>
+                    <div class="task-info">
+                      <p class="task-name">book GP appointment</p>
+                      <div class="task-meta">
+                        <span class="urgency-chip low">low</span>
+                        <span class="time-chip small"><img src="icons/clock.svg" class="chip-icon" alt="" /> 10 min</span>
+                        <span class="cat-tag" style="background: #D0C0E8;">health</span>
+                      </div>
+                    </div>
                   </div>
-                  <p class="stuck-prompt">where do you want to start?</p>
+                </div>
+                <button class="breakdown-btn" onclick="toggleBreakdown('task-4')">
+                  <img src="icons/scissors.svg" alt="" /> break it down
+                </button>
+                <div class="breakdown-steps" id="breakdown-task-4">
+                  <p class="step">1. find your GP's number</p>
+                  <p class="step">2. check your availability</p>
+                  <p class="step">3. call and book a time</p>
                 </div>
               </div>
             </div>
@@ -287,6 +325,12 @@
           </button>
 
         </div>
+
+        <!-- Floating Add Task Button -->
+        <button class="fab" onclick="openAddTask()" aria-label="add new task">
+          <img src="icons/check-square.svg" alt="" />
+          <span>add task</span>
+        </button>
 
         <nav class="bottom-nav">
           <button class="nav-btn" onclick="navigateTo('screen-dashboard')">
@@ -310,6 +354,91 @@
             <span>community</span>
           </button>
         </nav>
+      </div>
+
+      <!-- ============ ADD TASK MODAL ============ -->
+      <div class="modal-overlay" id="add-task-modal">
+        <div class="modal">
+          <div class="modal-header">
+            <h2 class="modal-title">new task.</h2>
+            <button class="modal-close" onclick="closeAddTask()" aria-label="close">✕</button>
+          </div>
+
+          <div class="modal-body">
+
+            <div class="modal-field">
+              <label class="form-label">what needs to get done?</label>
+              <input type="text" class="modal-input" id="task-title-input" placeholder="e.g. call the school..." />
+            </div>
+
+            <div class="modal-row">
+              <div class="modal-field half">
+                <label class="form-label">date</label>
+                <input type="date" class="modal-input" id="task-date-input" />
+              </div>
+              <div class="modal-field half">
+                <label class="form-label">time estimate</label>
+                <select class="modal-input" id="task-time-input">
+                  <option value="5">5 min</option>
+                  <option value="15" selected>15 min</option>
+                  <option value="30">30 min</option>
+                  <option value="60">1 hour</option>
+                  <option value="120">2+ hours</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="modal-field">
+              <label class="form-label">category</label>
+              <div class="category-picker">
+                <button class="cat-option selected" data-cat="kids" onclick="selectCategory(this)" style="--cat-color: #F0E0A0;">
+                  <span class="cat-dot" style="background: #F0E0A0;"></span> kids
+                </button>
+                <button class="cat-option" data-cat="work" onclick="selectCategory(this)" style="--cat-color: #B8D8C8;">
+                  <span class="cat-dot" style="background: #B8D8C8;"></span> work
+                </button>
+                <button class="cat-option" data-cat="home" onclick="selectCategory(this)" style="--cat-color: #B8D4E8;">
+                  <span class="cat-dot" style="background: #B8D4E8;"></span> home
+                </button>
+                <button class="cat-option" data-cat="health" onclick="selectCategory(this)" style="--cat-color: #D0C0E8;">
+                  <span class="cat-dot" style="background: #D0C0E8;"></span> health
+                </button>
+                <button class="cat-option" data-cat="personal" onclick="selectCategory(this)" style="--cat-color: #FFE4D0;">
+                  <span class="cat-dot" style="background: #FFE4D0;"></span> personal
+                </button>
+                <button class="cat-option add-cat" onclick="addCustomCategory()">
+                  <span>+</span> new
+                </button>
+              </div>
+            </div>
+
+            <!-- Custom category creator -->
+            <div class="custom-cat-form" id="custom-cat-form">
+              <input type="text" class="modal-input" id="custom-cat-name" placeholder="category name" />
+              <input type="color" class="colour-picker" id="custom-cat-colour" value="#B8D4E8" />
+            </div>
+
+            <button class="breakdown-generate-btn" onclick="generateBreakdown()">
+              <img src="icons/scissors.svg" alt="" /> generate AI breakdown
+            </button>
+
+            <div class="breakdown-loading" id="breakdown-loading">
+              <div class="loading-dots">
+                <span></span><span></span><span></span>
+              </div>
+              <p>breaking it down for you...</p>
+            </div>
+
+            <div class="breakdown-preview" id="breakdown-preview">
+              <p class="breakdown-preview-label">your steps</p>
+              <div id="breakdown-preview-steps"></div>
+            </div>
+
+          </div>
+
+          <button class="cta-btn" onclick="addTask()" style="margin-top: 8px;">add task</button>
+
+        </div>
       </div>
 
       <!-- ============ SCREEN 4: LIBRARY ============ -->
