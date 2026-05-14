@@ -1388,6 +1388,13 @@ textarea {
   color: var(--text-dark);
 }
 
+.task-date {
+  font-size: 11px;
+  color: var(--text-light);
+  font-weight: 400;
+  margin-top: 4px;
+}
+
 /* ============ FLUIR TIP ============ */
 .fluir-tip {
   display: flex;
@@ -1963,16 +1970,485 @@ textarea {
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
+  .screen { transition: none; }
+  .ring-fill { transition: none; }
+  .audio-toast { transition: none; }
+}
 
-  .screen {
-    transition: none;
-  }
+/* ============ DASHBOARD ACTION BUTTONS ============ */
+.dashboard-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 12px;
+  margin-bottom: 8px;
+}
 
-  .ring-fill {
-    transition: none;
-  }
+.brain-dump-btn {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 14px;
+  background: white;
+  border: 2px solid var(--peach);
+  border-radius: var(--radius-pill);
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-dark);
+  min-height: 54px;
+  transition: all 0.2s ease;
+}
 
-  .audio-toast {
-    transition: none;
-  }
+.brain-dump-btn img {
+  width: 16px;
+  height: 16px;
+  filter: sepia(1) saturate(2) hue-rotate(340deg) brightness(0.7);
+}
+
+.brain-dump-btn:hover {
+  background: var(--peach);
+}
+
+.hard-day-btn {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 14px;
+  background: #EEF2F8;
+  border: 2px solid #D4DCE8;
+  border-radius: var(--radius-pill);
+  font-size: 13px;
+  font-weight: 500;
+  color: #5A6A8A;
+  min-height: 54px;
+  transition: all 0.2s ease;
+}
+
+.hard-day-btn img {
+  width: 16px;
+  height: 16px;
+  filter: hue-rotate(180deg) saturate(0.6) brightness(0.8);
+}
+
+.hard-day-btn:hover {
+  background: #DDE4F0;
+}
+
+/* ============ HARD DAY OVERLAY ============ */
+.hard-day-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #E8EEF8;
+  z-index: 999;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 24px;
+}
+
+.hard-day-overlay.active {
+  display: flex;
+}
+
+.hard-day-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 16px;
+  max-width: 390px;
+  width: 100%;
+}
+
+.hard-day-logo {
+  width: 56px;
+  height: 56px;
+  border-radius: 16px;
+  opacity: 0.5;
+  filter: hue-rotate(180deg) saturate(0.4);
+}
+
+.hard-day-title {
+  font-family: 'ClashDisplay', sans-serif;
+  font-weight: 300;
+  font-size: 52px;
+  color: #4A5A7A;
+  line-height: 1;
+  letter-spacing: 2px;
+}
+
+.hard-day-text {
+  font-size: 18px;
+  font-weight: 400;
+  color: #5A6A8A;
+  line-height: 1.4;
+}
+
+.hard-day-sub {
+  font-size: 14px;
+  color: #8A9AAA;
+  line-height: 1.6;
+  max-width: 280px;
+  font-style: italic;
+}
+
+.hard-day-toolkit-btn {
+  width: 100%;
+  padding: 16px 24px;
+  background: #B8C8E0;
+  color: #3A4A6A;
+  border-radius: var(--radius-pill);
+  font-size: 15px;
+  font-weight: 600;
+  transition: all 0.2s ease;
+  min-height: 54px;
+  margin-top: 8px;
+}
+
+.hard-day-toolkit-btn:hover {
+  background: #A8B8D0;
+}
+
+.hard-day-back-btn {
+  font-size: 13px;
+  color: #8A9AAA;
+  font-weight: 500;
+  min-height: 44px;
+  padding: 8px;
+  text-decoration: underline;
+}
+
+/* ============ CONFETTI OVERLAY ============ */
+.confetti-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 500;
+  display: none;
+}
+
+.confetti-overlay.active {
+  display: block;
+}
+
+/* ============ BRAIN DUMP SCREEN ============ */
+.brain-dump-input {
+  width: 100%;
+  padding: 16px;
+  background: white;
+  border: 2px solid var(--peach);
+  border-radius: var(--radius-card);
+  font-size: 14px;
+  color: var(--text-dark);
+  font-family: 'Inter', sans-serif;
+  outline: none;
+  transition: all 0.2s ease;
+  line-height: 1.6;
+  resize: none;
+  margin-bottom: 16px;
+  min-height: 160px;
+}
+
+.brain-dump-input:focus {
+  border-color: var(--terracotta);
+}
+
+.brain-dump-input::placeholder {
+  color: var(--text-light);
+  font-style: italic;
+}
+
+.dump-results {
+  display: none;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.dump-results.visible {
+  display: flex;
+}
+
+.dump-task-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: white;
+  border-radius: var(--radius-sm);
+  padding: 12px 16px;
+  box-shadow: var(--shadow-soft);
+}
+
+.dump-task-item p {
+  font-size: 13px;
+  color: var(--text-dark);
+  font-weight: 500;
+  flex: 1;
+}
+
+.dump-task-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.dump-confirm-text {
+  font-size: 13px;
+  color: var(--text-light);
+  font-style: italic;
+  text-align: center;
+  margin-top: 4px;
+}
+
+.dump-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 4px;
+}
+
+/* ============ SENSORY TOOLKIT SCREEN ============ */
+.toolkit-tabs {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 24px;
+}
+
+.toolkit-tab {
+  flex: 1;
+  padding: 12px;
+  border-radius: var(--radius-pill);
+  background: var(--peach);
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-dark);
+  border: 2px solid transparent;
+  transition: all 0.2s ease;
+  min-height: 44px;
+}
+
+.toolkit-tab.active {
+  background: var(--burnt-orange);
+  color: white;
+}
+
+.toolkit-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.toolkit-panel.hidden {
+  display: none;
+}
+
+.toolkit-intro {
+  font-size: 14px;
+  color: var(--text-mid);
+  font-style: italic;
+  text-align: center;
+  line-height: 1.5;
+}
+
+/* ============ BOX BREATHING ============ */
+.breathing-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.breathing-square {
+  width: 220px;
+  height: 220px;
+}
+
+.breathing-line {
+  animation: none;
+  transition: stroke-dashoffset 4s linear;
+}
+
+.breathing-line.animating {
+  animation: drawBox 16s linear infinite;
+}
+
+@keyframes drawBox {
+  0% { stroke-dashoffset: 640; }
+  100% { stroke-dashoffset: 0; }
+}
+
+.breathing-dot {
+  animation: none;
+}
+
+.breathing-dot.animating {
+  animation: moveDot 16s linear infinite;
+}
+
+@keyframes moveDot {
+  0% { cx: 20; cy: 20; }
+  25% { cx: 180; cy: 20; }
+  50% { cx: 180; cy: 180; }
+  75% { cx: 20; cy: 180; }
+  100% { cx: 20; cy: 20; }
+}
+
+.breathing-instruction {
+  font-family: 'ClashDisplay', sans-serif;
+  font-weight: 500;
+  font-size: 22px;
+  color: var(--text-dark);
+  text-align: center;
+  min-height: 32px;
+}
+
+.breathing-count {
+  font-size: 36px;
+  font-weight: 700;
+  color: var(--burnt-orange);
+  min-height: 44px;
+  text-align: center;
+}
+
+.breathing-controls {
+  display: flex;
+  justify-content: center;
+}
+
+/* ============ 5-4-3-2-1 GROUNDING ============ */
+.grounding-card {
+  background: white;
+  border-radius: var(--radius-card);
+  padding: 24px;
+  box-shadow: var(--shadow-card);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  text-align: center;
+}
+
+.grounding-number {
+  font-family: 'ClashDisplay', sans-serif;
+  font-weight: 700;
+  font-size: 72px;
+  color: var(--burnt-orange);
+  line-height: 1;
+}
+
+.grounding-question {
+  font-size: 18px;
+  font-weight: 500;
+  color: var(--text-dark);
+  line-height: 1.3;
+}
+
+.grounding-complete {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 12px;
+  padding: 24px;
+  background: var(--peach);
+  border-radius: var(--radius-card);
+}
+
+.grounding-complete.visible {
+  display: flex;
+}
+
+/* ============ END OF DAY REWARD ============ */
+.end-of-day-reward {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--warm-white);
+  z-index: 200;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 24px;
+}
+
+.end-of-day-reward.visible {
+  display: flex;
+}
+
+.reward-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 16px;
+  width: 100%;
+}
+
+.reward-week {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-light);
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+}
+
+.reward-title {
+  font-family: 'ClashDisplay', sans-serif;
+  font-weight: 500;
+  font-size: 32px;
+  color: var(--text-dark);
+  line-height: 1.2;
+}
+
+.reward-stats {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+}
+
+.reward-stat {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background: var(--peach);
+  border-radius: var(--radius-pill);
+  padding: 12px 20px;
+}
+
+.reward-icon {
+  width: 18px;
+  height: 18px;
+  filter: sepia(1) saturate(3) hue-rotate(340deg) brightness(0.7);
+}
+
+.reward-stat span {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-dark);
+}
+
+.reward-affirmation {
+  font-size: 15px;
+  color: var(--text-mid);
+  line-height: 1.6;
+  font-style: italic;
+  max-width: 280px;
+}
+
+.reward-source {
+  font-size: 12px;
+  color: var(--text-light);
+  font-weight: 500;
 }

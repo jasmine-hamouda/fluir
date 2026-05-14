@@ -148,6 +148,17 @@
             <p>check-in reminder set for <strong>8pm tonight</strong></p>
           </div>
 
+          <div class="dashboard-actions">
+            <button class="brain-dump-btn" onclick="navigateTo('screen-braindump')">
+              <img src="icons/brain.svg" alt="" />
+              <span>brain dump</span>
+            </button>
+            <button class="hard-day-btn" onclick="activateHardDay()" aria-label="hard day mode">
+              <img src="icons/heart.svg" alt="" />
+              <span>hard day</span>
+            </button>
+          </div>
+
         </div>
 
         <nav class="bottom-nav">
@@ -211,6 +222,7 @@
                         <span class="time-chip small"><img src="icons/clock.svg" class="chip-icon" alt="" /> 15 min</span>
                         <span class="cat-tag" style="background: #F0E0A0;">kids</span>
                       </div>
+                      <p class="task-date">today</p>
                     </div>
                   </div>
                 </div>
@@ -221,6 +233,10 @@
                   <p class="step">1. find the school's number</p>
                   <p class="step">2. write down what to say</p>
                   <p class="step">3. make the call</p>
+                </div>
+                <div class="fluir-tip">
+                  <img src="icons/sun-dim.svg" class="tip-icon" alt="" />
+                  <p>you show up for your kids every day. this is just one more way you do that.</p>
                 </div>
               </div>
             </div>
@@ -240,6 +256,7 @@
                         <span class="time-chip small"><img src="icons/clock.svg" class="chip-icon" alt="" /> 5 min</span>
                         <span class="cat-tag" style="background: #B8D8C8;">work</span>
                       </div>
+                      <p class="task-date">Fri 16 May</p>
                     </div>
                   </div>
                 </div>
@@ -250,6 +267,10 @@
                   <p class="step">1. open the message</p>
                   <p class="step">2. write a short reply</p>
                   <p class="step">3. send it</p>
+                </div>
+                <div class="fluir-tip">
+                  <img src="icons/sun-dim.svg" class="tip-icon" alt="" />
+                  <p>a little movement before replying can help your brain shift gears. even just standing up and stretching first.</p>
                 </div>
               </div>
             </div>
@@ -269,6 +290,7 @@
                         <span class="time-chip small"><img src="icons/clock.svg" class="chip-icon" alt="" /> 30 min</span>
                         <span class="cat-tag" style="background: #B8D4E8;">home</span>
                       </div>
+                      <p class="task-date">Sat 17 May</p>
                     </div>
                   </div>
                 </div>
@@ -279,6 +301,10 @@
                   <p class="step">1. check what you need</p>
                   <p class="step">2. write a quick list</p>
                   <p class="step">3. go when you're ready</p>
+                </div>
+                <div class="fluir-tip">
+                  <img src="icons/sun-dim.svg" class="tip-icon" alt="" />
+                  <p>click and collect exists for exactly this. same-day options at most supermarkets — your future self will thank you.</p>
                 </div>
               </div>
             </div>
@@ -298,6 +324,7 @@
                         <span class="time-chip small"><img src="icons/clock.svg" class="chip-icon" alt="" /> 10 min</span>
                         <span class="cat-tag" style="background: #D0C0E8;">health</span>
                       </div>
+                      <p class="task-date">Wed 21 May</p>
                     </div>
                   </div>
                 </div>
@@ -308,6 +335,10 @@
                   <p class="step">1. find your GP's number</p>
                   <p class="step">2. check your availability</p>
                   <p class="step">3. call and book a time</p>
+                </div>
+                <div class="fluir-tip">
+                  <img src="icons/sun-dim.svg" class="tip-icon" alt="" />
+                  <p>taking care of yourself makes everything else more possible. this one counts.</p>
                 </div>
               </div>
             </div>
@@ -643,6 +674,26 @@
             <button class="edit-link" onclick="editCheckin()">edit today</button>
           </div>
 
+          <div class="end-of-day-reward" id="end-of-day-reward">
+            <div class="reward-content">
+              <p class="reward-week">today, Thu 15 May</p>
+              <h2 class="reward-title">today you showed up.</h2>
+              <div class="reward-stats">
+                <div class="reward-stat">
+                  <img src="icons/check-fat.svg" class="reward-icon" alt="" />
+                  <span>1 task completed</span>
+                </div>
+                <div class="reward-stat">
+                  <img src="icons/heart.svg" class="reward-icon" alt="" />
+                  <span>check-in done</span>
+                </div>
+              </div>
+              <p class="reward-affirmation">"you are allowed to be a work in progress and still be enough."</p>
+              <p class="reward-source">— Nedra Tawwab</p>
+              <button class="cta-btn" onclick="closeReward()" style="margin-top: 16px;">close</button>
+            </div>
+          </div>
+
         </div>
 
         <nav class="bottom-nav">
@@ -808,6 +859,139 @@
     <span>audio coming in the full version</span>
   </div>
 
+  <!-- Confetti overlay -->
+  <div class="confetti-overlay" id="confetti-overlay">
+    <dotlottie-player
+      src="animations/confetti.json"
+      autoplay
+      style="width:100%;height:100%;">
+    </dotlottie-player>
+  </div>
+
+  <!-- Hard day overlay -->
+  <div class="hard-day-overlay" id="hard-day-overlay">
+    <div class="hard-day-content">
+      <img src="images/Fluir (512 x 512 px).png" alt="Fluir" class="hard-day-logo" />
+      <h2 class="hard-day-title">breathe.</h2>
+      <p class="hard-day-text">take it one step at a time.</p>
+      <p class="hard-day-sub">you do not have to do everything today. you just have to be here.</p>
+      <button class="hard-day-toolkit-btn" onclick="navigateTo('screen-sensory'); deactivateHardDay()">
+        open sensory toolkit
+      </button>
+      <button class="hard-day-back-btn" onclick="deactivateHardDay()">
+        I'm ready to continue
+      </button>
+    </div>
+  </div>
+
+  <!-- ============ SCREEN 8: BRAIN DUMP ============ -->
+  <div class="screen" id="screen-braindump">
+    <div class="screen-scroll">
+
+      <div class="screen-header">
+        <div>
+          <h1 class="screen-title">brain dump.</h1>
+          <p class="screen-subtitle">get it out of your head and onto the screen.</p>
+        </div>
+        <button class="back-btn" onclick="navigateTo('screen-dashboard')">
+          <img src="icons/arrow-counter-clockwise.svg" alt="" /> back
+        </button>
+      </div>
+
+      <textarea class="brain-dump-input" id="brain-dump-input" placeholder="just type... everything on your mind, every task, every worry, every thing you haven't done yet. no structure needed." rows="8"></textarea>
+
+      <button class="breakdown-generate-btn" onclick="organiseBrainDump()" style="margin-bottom: 16px;">
+        <img src="icons/brain.svg" alt="" /> organise into tasks
+      </button>
+
+      <div class="breakdown-loading" id="dump-loading">
+        <div class="loading-dots">
+          <span></span><span></span><span></span>
+        </div>
+        <p>reading your mind...</p>
+      </div>
+
+      <div class="dump-results" id="dump-results">
+        <p class="breakdown-preview-label">fluir found these tasks</p>
+        <div id="dump-task-list"></div>
+        <p class="dump-confirm-text">do these look right?</p>
+        <div class="dump-actions">
+          <button class="cta-btn" onclick="addDumpTasks()">add all to tasks</button>
+          <button class="start-fresh-btn" onclick="clearDump()" style="margin-top: 8px;">start over</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ============ SCREEN 9: SENSORY TOOLKIT ============ -->
+  <div class="screen" id="screen-sensory">
+    <div class="screen-scroll">
+
+      <div class="screen-header">
+        <div>
+          <h1 class="screen-title">toolkit.</h1>
+          <p class="screen-subtitle">for when you need to come back to yourself.</p>
+        </div>
+        <button class="back-btn" onclick="navigateTo('screen-dashboard')">
+          <img src="icons/arrow-counter-clockwise.svg" alt="" /> back
+        </button>
+      </div>
+
+      <div class="toolkit-tabs">
+        <button class="toolkit-tab active" onclick="switchToolkit(this, 'breathing')">box breathing</button>
+        <button class="toolkit-tab" onclick="switchToolkit(this, 'grounding')">5-4-3-2-1</button>
+      </div>
+
+      <!-- Box Breathing -->
+      <div class="toolkit-panel" id="toolkit-breathing">
+        <p class="toolkit-intro">follow the line. breathe with it.</p>
+
+        <div class="breathing-container">
+          <svg class="breathing-square" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+            <!-- Background square -->
+            <rect x="20" y="20" width="160" height="160" rx="12" ry="12"
+              fill="none" stroke="#E8C4B8" stroke-width="2" />
+            <!-- Animated line -->
+            <rect x="20" y="20" width="160" height="160" rx="12" ry="12"
+              fill="none" stroke="#C94F1E" stroke-width="3"
+              stroke-dasharray="640" stroke-dashoffset="640"
+              class="breathing-line" id="breathing-line" />
+            <!-- Dot -->
+            <circle cx="20" cy="20" r="6" fill="#C94F1E" class="breathing-dot" id="breathing-dot" />
+          </svg>
+          <div class="breathing-instruction" id="breathing-instruction">tap start to begin</div>
+          <div class="breathing-count" id="breathing-count"></div>
+        </div>
+
+        <div class="breathing-controls">
+          <button class="cta-btn" id="breathing-btn" onclick="toggleBreathing()">start</button>
+        </div>
+      </div>
+
+      <!-- 5-4-3-2-1 Grounding -->
+      <div class="toolkit-panel hidden" id="toolkit-grounding">
+        <p class="toolkit-intro">bring yourself back. one sense at a time.</p>
+
+        <div class="grounding-card" id="grounding-card">
+          <div class="grounding-number" id="grounding-number">5</div>
+          <p class="grounding-question" id="grounding-question">what can you see?</p>
+          <textarea class="checkin-input" id="grounding-input" placeholder="write what you notice..." rows="2"></textarea>
+          <button class="cta-btn" onclick="nextGrounding()" style="margin-top: 12px;" id="grounding-next">next</button>
+        </div>
+
+        <div class="grounding-complete" id="grounding-complete">
+          <img src="icons/check-fat.svg" class="confirm-icon" alt="" />
+          <h3 class="done-title">you're back.</h3>
+          <p class="done-text">you just brought yourself into the present moment. that takes strength.</p>
+          <button class="cta-btn" onclick="resetGrounding()" style="margin-top: 12px;">do it again</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <script src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.js"></script>
   <script src="script.js"></script>
 </body>
 </html>
